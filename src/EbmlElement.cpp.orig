@@ -454,7 +454,7 @@ EbmlElement * EbmlElement::FindNextElement(IOCallback & DataStream, const EbmlSe
     ReadIndex = SizeIdx - 1;
     memmove(&PossibleIdNSize[0], &PossibleIdNSize[1], ReadIndex);
     UpperLevel = UpperLevel_original;
-  } while ( MaxDataSize >= ReadSize );
+  } while ( MaxDataSize > DataStream.getFilePointer() - SizeIdx + PossibleID_Length );
 
   return NULL;
 }
